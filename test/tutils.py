@@ -29,34 +29,34 @@ class DaemonTests(object):
     nocraft = False
 
     @classmethod
-    def setup_class(klass):
-        opts = klass.ssloptions or {}
-        klass.confdir = tempfile.mkdtemp()
-        opts["confdir"] = klass.confdir
+    def setup_class(cls):
+        opts = cls.ssloptions or {}
+        cls.confdir = tempfile.mkdtemp()
+        opts["confdir"] = cls.confdir
         so = pathod.SSLOptions(**opts)
-        klass.d = test.Daemon(
+        cls.d = test.Daemon(
             staticdir=test_data.path("data"),
             anchors=[
                 (re.compile("/anchor/.*"), "202:da")
             ],
-            ssl=klass.ssl,
+            ssl=cls.ssl,
             ssloptions=so,
             sizelimit=1 * 1024 * 1024,
-            noweb=klass.noweb,
-            noapi=klass.noapi,
-            nohang=klass.nohang,
-            timeout=klass.timeout,
-            hexdump=klass.hexdump,
-            nocraft=klass.nocraft,
+            noweb=cls.noweb,
+            noapi=cls.noapi,
+            nohang=cls.nohang,
+            timeout=cls.timeout,
+            hexdump=cls.hexdump,
+            nocraft=cls.nocraft,
             logreq=True,
             logresp=True,
             explain=True
         )
 
     @classmethod
-    def teardown_class(self):
-        self.d.shutdown()
-        shutil.rmtree(self.confdir)
+    def teardown_class(cls):
+        cls.d.shutdown()
+        shutil.rmtree(cls.confdir)
 
     def teardown(self):
         if not (self.noweb or self.noapi):
