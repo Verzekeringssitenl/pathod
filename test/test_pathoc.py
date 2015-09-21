@@ -22,7 +22,7 @@ class _TestDaemon:
     ssloptions = pathod.SSLOptions()
 
     @classmethod
-    def setUpAll(self):
+    def setup_class(self):
         self.d = test.Daemon(
             ssl=self.ssl,
             ssloptions=self.ssloptions,
@@ -33,7 +33,7 @@ class _TestDaemon:
         )
 
     @classmethod
-    def tearDownAll(self):
+    def teardown_class(self):
         self.d.shutdown()
 
     def setUp(self):

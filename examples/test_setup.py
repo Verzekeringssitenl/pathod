@@ -10,10 +10,10 @@ class Test:
         each test.
     """
 
-    def setUp(self):
+    def setup(self):
         self.d = test.Daemon()
 
-    def tearDown(self):
+    def teardown(self):
         self.d.shutdown()
 
     def test_simple(self):

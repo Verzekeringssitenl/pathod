@@ -10,14 +10,14 @@ class Test:
         for the test suite.
     """
     @classmethod
-    def setUpAll(cls):
+    def setup_class(cls):
         cls.d = test.Daemon()
 
     @classmethod
-    def tearDownAll(cls):
+    def teardown_class(cls):
         cls.d.shutdown()
 
-    def setUp(self):
+    def setup(self):
         # Clear the pathod logs between tests
         self.d.clear_log()
 
