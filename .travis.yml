@@ -38,7 +38,7 @@ before_script:
   - "openssl version -a"
 
 script:
-  - "py.test -n 4 --cov pathod"
+  - "py.test --cov pathod -v"
 
 after_success:
   - coveralls
